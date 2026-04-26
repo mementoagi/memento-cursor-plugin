@@ -76,22 +76,6 @@ Your AI comes with its own identity. The first session introduces it to you and 
 | `/mm/handoff` | Prepare context for a new thread |
 | `/mm/investigate-and-cache` | Deep-dive a codebase area, save findings |
 
-### Autonomous Coding
-
-| Command | What it does |
-|---------|-------------|
-| `/mm/complete-project` | End-to-end: plan, build, test, review, ship |
-| `/mm/make-a-project` | Create project structure in memory |
-| `/mm/do-it-in-a-browser` | Browser-based UI verification |
-
-### Task Management
-
-| Command | What it does |
-|---------|-------------|
-| `/mm/todo/todo` | Add a task to the backlog |
-| `/mm/todo/todos` | List all tasks |
-| `/mm/todo/work-on-todos` | Pick highest priority task and work autonomously |
-
 ## How It Works
 
 Memento uses the [Model Context Protocol (MCP)](https://spec.modelcontextprotocol.io/) to connect Cursor to cloud-hosted persistent memory.
