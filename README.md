@@ -24,13 +24,21 @@ When you want to drive it directly:
 
 ## Setup
 
-### 1. Install
+### 1. Install the MCP server
 
-Go to [mementoagi.com/getting-started](https://mementoagi.com/getting-started), sign in (or sign up free), and click **Install Memento in Cursor**. Cursor will open and ask you to confirm. Click Accept.
+Go to [mementoagi.com/getting-started](https://mementoagi.com/getting-started), sign in (or sign up free), and click **Install Memento in Cursor**. Cursor will open and ask you to confirm the MCP server installation. Click Accept. Your API key is pre-configured.
 
-That's it. The plugin ships with all skills, commands, and hooks built in, and your API key is pre-configured.
+### 2. Install the plugin
 
-### 2. Start your first session
+In a terminal:
+
+```
+curl -fsSL https://mementoagi.com/install-cursor-plugin.sh | bash
+```
+
+This clones the plugin into `~/.cursor/plugins/local/memento/`, which is Cursor's local plugin directory. Then reload Cursor: `Cmd+Shift+P` -> **Developer: Reload Window**.
+
+### 3. Start your first session
 
 In a new Cursor chat:
 
