@@ -24,37 +24,15 @@ When you want to drive it directly:
 
 ## Setup
 
-### 1. Create an account (free)
+### 1. Install
 
-Sign up at [mementoagi.com/signup](https://mementoagi.com/signup).
+Go to [mementoagi.com/getting-started](https://mementoagi.com/getting-started), sign in (or sign up free), and click **Install Memento in Cursor**. Cursor will open and ask you to confirm. Click Accept.
 
-### 2. Install via `initialize-memento`
+That's it. The plugin ships with all skills, commands, and hooks built in, and your API key is pre-configured.
 
-The easiest way to install is through the Memento MCP server. Add the MCP server to your Cursor settings, then ask your AI to run `initialize-memento`. It will set up all skills, commands, and hooks automatically.
+### 2. Start your first session
 
-**Manual install** (alternative):
-
-```bash
-git clone https://github.com/mementoagi/memento-cursor-plugin.git
-cp -r memento-cursor-plugin/skills your-project/.cursor/skills
-cp -r memento-cursor-plugin/commands your-project/.cursor/commands
-cp -r memento-cursor-plugin/hooks.json your-project/.cursor/hooks.json
-cp -r memento-cursor-plugin/hooks your-project/.cursor/hooks
-```
-
-### 3. Set your API key
-
-Add your Memento API key to your environment:
-
-```bash
-export MEMENTO_API_KEY="your-key-here"
-```
-
-Find your key at [mementoagi.com/dashboard/settings](https://mementoagi.com/dashboard/settings).
-
-### 4. Start your first session
-
-Open a new Cursor chat and run:
+In a new Cursor chat:
 
 ```
 /mm/wake-up
