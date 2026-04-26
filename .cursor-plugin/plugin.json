@@ -1,0 +1,26 @@
+{
+  "name": "memento",
+  "version": "1.1.0",
+  "description": "Persistent, transparent, shareable AI memory for coding assistants. Your AI remembers your codebase, conventions, and team knowledge across every session.",
+  "author": {
+    "name": "Memento",
+    "email": "hello@mementoagi.com"
+  },
+  "homepage": "https://mementoagi.com",
+  "repository": "https://github.com/mementoagi/memento-cursor-plugin",
+  "license": "MIT",
+  "keywords": [
+    "ai-memory",
+    "persistent-context",
+    "mcp",
+    "coding-assistant",
+    "ai-agent",
+    "developer-tools",
+    "team-memory",
+    "autonomous-coding"
+  ],
+  "logo": "assets/logo.svg",
+  "commands": "commands/",
+  "skills": "skills/",
+  "hooks": "hooks.json"
+}

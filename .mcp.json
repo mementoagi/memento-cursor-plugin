@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "memento-cloud": {
+      "command": "npx",
+      "args": ["-y", "memento-mcp-client@latest"],
+      "env": {
+        "MEMENTO_API_KEY": "${MEMENTO_API_KEY}"
+      }
+    }
+  }
+}
