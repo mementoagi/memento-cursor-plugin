@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-# Memento Cursor plugin installer.
-# Clones (or updates) the plugin into Cursor's local plugin directory so
-# Cursor picks up the new skills, commands, and hooks.
+# Memento Cursor plugin installer (macOS / Linux).
+# Downloads the plugin tarball and extracts it into Cursor's local plugin directory.
+# Uses only curl + tar, which are preinstalled on every modern Mac and most Linux distros.
+# No git dependency.
 #
 # Usage:
 #   curl -fsSL https://mementoagi.com/install-cursor-plugin.sh | bash
@@ -9,39 +10,32 @@
 
 set -euo pipefail
 
-REPO_URL="https://github.com/mementoagi/memento-cursor-plugin.git"
+TARBALL_URL="https://github.com/mementoagi/memento-cursor-plugin/archive/refs/heads/main.tar.gz"
 DEST="$HOME/.cursor/plugins/local/memento"
 
-bold()   { printf '\033[1m%s\033[0m\n' "$*"; }
-green()  { printf '\033[32m%s\033[0m\n' "$*"; }
-yellow() { printf '\033[33m%s\033[0m\n' "$*"; }
-red()    { printf '\033[31m%s\033[0m\n' "$*" >&2; }
+bold()  { printf '\033[1m%s\033[0m\n' "$*"; }
+green() { printf '\033[32m%s\033[0m\n' "$*"; }
+red()   { printf '\033[31m%s\033[0m\n' "$*" >&2; }
 
-if ! command -v git >/dev/null 2>&1; then
-  red "Error: git is not installed. Install git first, then re-run this script."
-  exit 1
-fi
-
-mkdir -p "$(dirname "$DEST")"
-
-is_valid_git_repo() {
-  [ -d "$1/.git" ] && git -C "$1" rev-parse --git-dir >/dev/null 2>&1
-}
-
-if is_valid_git_repo "$DEST"; then
-  bold "Updating Memento Cursor plugin in $DEST ..."
-  git -C "$DEST" fetch --quiet origin main
-  git -C "$DEST" reset --quiet --hard origin/main
-else
-  if [ -d "$DEST" ] && [ -n "$(ls -A "$DEST" 2>/dev/null)" ]; then
-    yellow "$DEST exists but is not a valid git checkout. Moving aside to ${DEST}.backup.$(date +%s)"
-    mv "$DEST" "${DEST}.backup.$(date +%s)"
-  elif [ -d "$DEST" ]; then
-    rm -rf "$DEST"
+for cmd in curl tar; do
+  if ! command -v "$cmd" >/dev/null 2>&1; then
+    red "Error: $cmd is not installed. Please install it and retry."
+    exit 1
   fi
+done
+
+# Wipe any prior install so the new tarball lands cleanly (handles stale .git, partial writes, etc).
+if [ -d "$DEST" ]; then
+  bold "Updating Memento Cursor plugin in $DEST ..."
+  rm -rf "$DEST"
+else
   bold "Installing Memento Cursor plugin to $DEST ..."
-  git clone --quiet --depth 1 "$REPO_URL" "$DEST"
 fi
+
+mkdir -p "$DEST"
+
+# --strip-components=1 peels off the "memento-cursor-plugin-main/" prefix from the tarball.
+curl -fsSL "$TARBALL_URL" | tar -xz --strip-components=1 -C "$DEST"
 
 if [ -d "$DEST/hooks" ]; then
   find "$DEST/hooks" -type f -name '*.sh' -exec chmod +x {} \;
