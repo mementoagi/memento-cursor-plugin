@@ -44,8 +44,9 @@ fi
 green "Memento Cursor plugin installed."
 echo
 bold "Next step:"
-echo "  Start a new chat in Cursor and type:  /mm/wake-up"
+echo "  Start a new chat in Cursor and type:  /wake-up"
 echo
-echo "  (If the command isn't recognized, restart Cursor and try again.)"
+echo "  (Cursor will match it to /mm/wake-up. If the command isn't"
+echo "   recognized, restart Cursor and try again.)"
 echo
 echo "If you haven't yet installed the MCP server, visit https://mementoagi.com/getting-started"
