@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Memento Cursor plugin installer.
-# Clones (or updates) the plugin into Cursor's local plugin directory and
-# prompts the user to reload Cursor so it picks up the new skills/commands/hooks.
+# Clones (or updates) the plugin into Cursor's local plugin directory so
+# Cursor picks up the new skills, commands, and hooks.
 #
 # Usage:
 #   curl -fsSL https://mementoagi.com/install-cursor-plugin.sh | bash
@@ -43,8 +43,9 @@ fi
 
 green "Memento Cursor plugin installed."
 echo
-bold "Next steps:"
-echo "  1. Reload Cursor:  Cmd+Shift+P  ->  'Developer: Reload Window'"
-echo "  2. Start a new chat and type:  /mm/wake-up"
+bold "Next step:"
+echo "  Start a new chat in Cursor and type:  /mm/wake-up"
+echo
+echo "  (If the command isn't recognized, restart Cursor and try again.)"
 echo
 echo "If you haven't yet installed the MCP server, visit https://mementoagi.com/getting-started"
