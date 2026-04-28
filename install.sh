@@ -24,14 +24,20 @@ fi
 
 mkdir -p "$(dirname "$DEST")"
 
-if [ -d "$DEST/.git" ]; then
+is_valid_git_repo() {
+  [ -d "$1/.git" ] && git -C "$1" rev-parse --git-dir >/dev/null 2>&1
+}
+
+if is_valid_git_repo "$DEST"; then
   bold "Updating Memento Cursor plugin in $DEST ..."
   git -C "$DEST" fetch --quiet origin main
   git -C "$DEST" reset --quiet --hard origin/main
 else
   if [ -d "$DEST" ] && [ -n "$(ls -A "$DEST" 2>/dev/null)" ]; then
-    yellow "$DEST exists and is not a git checkout. Moving aside to ${DEST}.backup.$(date +%s)"
+    yellow "$DEST exists but is not a valid git checkout. Moving aside to ${DEST}.backup.$(date +%s)"
     mv "$DEST" "${DEST}.backup.$(date +%s)"
+  elif [ -d "$DEST" ]; then
+    rm -rf "$DEST"
   fi
   bold "Installing Memento Cursor plugin to $DEST ..."
   git clone --quiet --depth 1 "$REPO_URL" "$DEST"
